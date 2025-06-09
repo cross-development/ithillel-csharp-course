@@ -1,0 +1,14 @@
+[
+  {
+    "IllnessType": 1,
+    "AdditionalInfo": "need to check both eyes",
+    "Address": "London, UK",
+    "Name": "Tom",
+    "Surname": "Blank",
+    "Phone": "",
+    "Email": "tom_b@mail.com",
+    "Id": 1,
+    "CreatedAt": "2025-05-24T11:44:41.3175787Z",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  }
+]

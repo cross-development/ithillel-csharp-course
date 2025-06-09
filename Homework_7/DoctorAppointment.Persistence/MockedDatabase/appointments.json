@@ -1,0 +1,34 @@
+[
+  {
+    "Patient": {
+      "IllnessType": 1,
+      "AdditionalInfo": "need to check both eyes",
+      "Address": "London, UK",
+      "Name": "Tom",
+      "Surname": "Blank",
+      "Phone": "",
+      "Email": "tom_b@mail.com",
+      "Id": 1,
+      "CreatedAt": "2025-05-24T11:44:41.3175787Z",
+      "UpdatedAt": "0001-01-01T00:00:00"
+    },
+    "Doctor": {
+      "DoctorType": 1,
+      "Experience": 10,
+      "Salary": 20000.0,
+      "Name": "John",
+      "Surname": "Doe",
+      "Phone": "",
+      "Email": "john@mail.com",
+      "Id": 1,
+      "CreatedAt": "2025-05-24T11:06:00.4197305Z",
+      "UpdatedAt": "0001-01-01T00:00:00"
+    },
+    "DateTimeFrom": "2025-06-01T12:00:00",
+    "DateTimeTo": "2025-06-01T13:00:00",
+    "Description": "please be on time",
+    "Id": 1,
+    "CreatedAt": "2025-05-24T11:47:59.0270347Z",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  }
+]
