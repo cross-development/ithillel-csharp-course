@@ -1,48 +1,29 @@
-﻿using Newtonsoft.Json;
-using DoctorAppointment.Domain.Entities;
-using DoctorAppointment.Persistence.Configuration;
+﻿using DoctorAppointment.Domain.Entities;
+using DoctorAppointment.Domain.Enums;
+using DoctorAppointment.Domain.Interfaces;
 using DoctorAppointment.Persistence.Interfaces;
 
 namespace DoctorAppointment.Persistence.Repositories;
 
 /// <summary>
-/// Repository class for managing <see cref="Doctor"/> entities.
-/// Provides CRUD operations and handles persistence via JSON file.
-/// Inherits from <see cref="GenericRepository{Doctor}"/>.
+/// Repository for managing <see cref="Doctor"/> entities in the persistence layer.
+/// Provides CRUD operations for doctors through the generic repository pattern.
 /// </summary>
 public sealed class DoctorRepository : GenericRepository<Doctor>, IDoctorRepository
 {
     /// <summary>
-    /// Gets or sets the file path where doctor data is stored.
+    /// Gets the entity type for doctor entities.
     /// </summary>
-    protected override string Path { get; set; }
-
-    /// <summary>
-    /// Gets or sets the last used ID for doctor entities.
-    /// </summary>
-    protected override int LastId { get; set; }
+    protected override EntityType EntityType => EntityType.Doctor;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DoctorRepository"/> class.
-    /// Loads the file path and last ID from the app settings configuration.
     /// </summary>
-    public DoctorRepository()
+    /// <param name="strategy">The data format strategy for <see cref="Doctor"/> entities.</param>
+    /// <param name="context">The application context providing access to the data storage.</param>
+    public DoctorRepository(IDataFormatStrategy<Doctor> strategy, IApplicationContext context)
+        : base(strategy, context)
     {
-        AppSettingsConfiguration result = ReadFromAppSettings();
-
-        Path = result.Database.Doctors.Path;
-        LastId = result.Database.Doctors.LastId;
-    }
-
-    /// <summary>
-    /// Persists the current value of <see cref="LastId"/> to the app settings file.
-    /// </summary>
-    protected override void SaveLastId()
-    {
-        AppSettingsConfiguration result = ReadFromAppSettings();
-        result.Database.Doctors.LastId = LastId;
-
-        var json = JsonConvert.SerializeObject(result, Formatting.Indented);
-        File.WriteAllText(Constants.AppSettingsPath, json);
+        InitializePaths();
     }
 }

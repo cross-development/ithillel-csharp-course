@@ -1,11 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using DoctorAppointment.Persistence.Repositories;
-using DoctorAppointment.Persistence.Interfaces;
-using DoctorAppointment.Application.Services;
 using DoctorAppointment.Application.Interfaces;
+using DoctorAppointment.Application.Services;
+using DoctorAppointment.Domain.Interfaces;
+using DoctorAppointment.Persistence.Interfaces;
+using DoctorAppointment.Persistence.Repositories;
 using DoctorAppointment.UI.ConsoleUi;
 using DoctorAppointment.UI.ConsoleUi.Interfaces;
 using DoctorAppointment.UI.ConsoleUi.Managers;
+using DoctorAppointment.UI.Infrastructure;
 
 namespace DoctorAppointment.UI;
 
@@ -29,6 +31,12 @@ internal class Program
     private static void Main(string[] args)
     {
         var services = new ServiceCollection();
+
+        // Register the application context as a singleton
+        services.AddSingleton<IApplicationContext, ApplicationContext>();
+
+        // Register the format strategy resolver for IDataFormatStrategy<T>
+        services.AddTransient(typeof(IDataFormatStrategy<>), typeof(FormatStrategyResolver<>));
 
         // Persistence layer service registrations
         services.AddTransient<IDoctorRepository, DoctorRepository>();

@@ -1,13 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using DoctorAppointment.Domain.Enums;
+using DoctorAppointment.Domain.Interfaces;
 using DoctorAppointment.UI.ConsoleUi.Interfaces;
 
 namespace DoctorAppointment.UI.ConsoleUi;
 
 /// <summary>
-/// Represents the main console application for hospital administration.
-/// Provides a menu interface to manage doctors, patients, and appointments.
+/// Main console application class that handles user interaction with the hospital administration system.
 /// </summary>
-public sealed class ConsoleApp(IServiceProvider serviceProvider)
+/// <remarks>
+/// This class is responsible for displaying the main menu, processing user input,
+/// and delegating to the appropriate manager services for doctor, patient, and appointment management.
+/// It also handles data format selection at application startup.
+/// </remarks>
+/// <param name="serviceProvider">The dependency injection service provider used to resolve manager services.</param>
+/// <param name="applicationContext">The application context that stores global application settings.</param>
+public sealed class ConsoleApp(IServiceProvider serviceProvider, IApplicationContext applicationContext)
 {
     /// <summary>
     /// Runs the main loop of the console application, displaying a menu and
@@ -22,6 +30,8 @@ public sealed class ConsoleApp(IServiceProvider serviceProvider)
     /// </remarks>
     public void Run()
     {
+        applicationContext.Format = AskForDataFormat();
+
         var exit = false;
 
         while (!exit)
@@ -49,5 +59,32 @@ public sealed class ConsoleApp(IServiceProvider serviceProvider)
                     break;
             }
         }
+    }
+
+    /// <summary>
+    /// Prompts the user to select a data format and returns the corresponding <see cref="DataFormatType"/> value.
+    /// </summary>
+    /// <remarks>
+    /// If the user provides an invalid input or no input, the method defaults to <see cref="DataFormatType.Json"/>.
+    /// </remarks>
+    /// <returns>
+    /// The selected <see cref="DataFormatType"/> based on user input, or <see cref="DataFormatType.Json"/> if the input is invalid.
+    /// </returns>
+    private static DataFormatType AskForDataFormat()
+    {
+        var availableFormats = Enum.GetNames<DataFormatType>().Select(name => name.ToLower());
+
+        Console.WriteLine($"Select data format: {string.Join(" / ", availableFormats)}");
+        var input = Console.ReadLine()?.Trim().ToLower();
+
+        if (Enum.TryParse<DataFormatType>(input, true, out var format))
+        {
+            return format;
+        }
+
+        Console.WriteLine("Invalid format. Default to JSON.");
+        format = DataFormatType.Json;
+
+        return format;
     }
 }

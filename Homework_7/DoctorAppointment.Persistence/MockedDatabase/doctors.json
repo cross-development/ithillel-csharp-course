@@ -22,5 +22,17 @@
     "Id": 2,
     "CreatedAt": "2025-05-24T11:07:03.399869Z",
     "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "DoctorType": 3,
+    "Experience": 5,
+    "Salary": 10000.0,
+    "Name": "Bob",
+    "Surname": "Miller",
+    "Phone": "",
+    "Email": "bob@mail.com",
+    "Id": 3,
+    "CreatedAt": "2025-06-12T17:12:24.1911383Z",
+    "UpdatedAt": "0001-01-01T00:00:00"
   }
 ]

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPatient xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Patient>
+		<Id>1</Id>
+		<CreatedAt>2025-06-12T20:22:41.5926523Z</CreatedAt>
+		<UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+		<Name>Tim</Name>
+		<Surname>Smith</Surname>
+		<Phone />
+		<Email>tim@mail.com</Email>
+		<IllnessType>Infection</IllnessType>
+		<AdditionalInfo>help</AdditionalInfo>
+		<Address>New York, US</Address>
+	</Patient>
+</ArrayOfPatient>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAppointment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Appointment>
+		<Id>1</Id>
+		<CreatedAt>2025-06-12T20:24:03.464031Z</CreatedAt>
+		<UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+		<Patient>
+			<Id>1</Id>
+			<CreatedAt>2025-06-12T20:22:41.5926523Z</CreatedAt>
+			<UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+			<Name>Tim</Name>
+			<Surname>Smith</Surname>
+			<Phone />
+			<Email>tim@mail.com</Email>
+			<IllnessType>Infection</IllnessType>
+			<AdditionalInfo>help</AdditionalInfo>
+			<Address>New York, US</Address>
+		</Patient>
+		<Doctor>
+			<Id>1</Id>
+			<CreatedAt>2025-06-12T20:20:53.4353218Z</CreatedAt>
+			<UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+			<Name>John</Name>
+			<Surname>Doe</Surname>
+			<Phone />
+			<Email>john@mail.com</Email>
+			<DoctorType>Paramedic</DoctorType>
+			<Experience>10</Experience>
+			<Salary>5000</Salary>
+		</Doctor>
+		<DateTimeFrom>2025-06-13T10:00:00</DateTimeFrom>
+		<DateTimeTo>2025-06-13T11:00:00</DateTimeTo>
+		<Description>please be on time</Description>
+	</Appointment>
+</ArrayOfAppointment>
