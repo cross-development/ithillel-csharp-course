@@ -1,0 +1,70 @@
+﻿@model List<Homework_13.Models.Contact>
+
+@{
+    ViewData["Title"] = "Contacts";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-4">Contacts</h1>
+
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-person-plus"></i> Create New Contact
+    </a>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">@Html.DisplayFor(modelItem => item.Name)</h5>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong>Phone:</strong> @Html.DisplayFor(modelItem => item.Phone)<br>
+
+                        @if (!string.IsNullOrEmpty(item.AlternatePhone))
+                        {
+                            <strong>Alt Phone:</strong>
+                            @Html.DisplayFor(modelItem => item.AlternatePhone)
+
+                            <br>
+                        }
+
+                        <strong>Email:</strong> @Html.DisplayFor(modelItem => item.Email)
+                    </p>
+
+                    @if (!string.IsNullOrEmpty(item.Description))
+                    {
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    }
+                </div>
+
+                <div class="card-footer">
+                    <div class="btn-group w-100" role="group">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Details</a>
+
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Edit</a>
+
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center mt-5">
+        <div class="alert alert-info">
+            <h4>No contacts found</h4>
+
+            <p>Start by adding your first contact!</p>
+
+            <a asp-action="Create" class="btn btn-primary">Create New Contact</a>
+        </div>
+    </div>
+}

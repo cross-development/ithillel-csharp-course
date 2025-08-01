@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Notes & Contacts App</h1>
+
+    <p class="lead">Manage your notes and contacts efficiently</p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Notes</h5>
+
+                <p class="card-text">Create, edit, and organize your notes with tags</p>
+
+                <a asp-controller="Notes" asp-action="Index" class="btn btn-primary">View Notes</a>
+
+                <a asp-controller="Notes" asp-action="Create" class="btn btn-outline-primary">Create Note</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Contacts</h5>
+
+                <p class="card-text">Manage your contact information and details</p>
+
+                <a asp-controller="Contacts" asp-action="Index" class="btn btn-success">View Contacts</a>
+
+                <a asp-controller="Contacts" asp-action="Create" class="btn btn-outline-success">Create Contact</a>
+            </div>
+        </div>
+    </div>
+</div>

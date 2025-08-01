@@ -1,0 +1,45 @@
+﻿@model Homework_13.Models.Note
+
+@{
+    ViewData["Title"] = "Note Details";
+}
+
+<h1>Note Details</h1>
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">@Html.DisplayFor(model => model.Title)</h4>
+
+        <small class="text-muted">Created: @Html.DisplayFor(model => model.CreatedAt)</small>
+    </div>
+
+    <div class="card-body">
+        <div class="mb-3">
+            <strong>@Html.DisplayNameFor(model => model.Text):</strong>
+
+            <p class="mt-2">@Html.DisplayFor(model => model.Text)</p>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.Tags))
+        {
+            <div class="mb-3">
+                <strong>@Html.DisplayNameFor(model => model.Tags):</strong>
+
+                <div class="mt-2">
+                    @foreach (var tag in Model.Tags.Split(','))
+                    {
+                        <span class="badge bg-primary me-1">@tag.Trim()</span>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="card-footer">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+
+        <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger">Delete</a>
+
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

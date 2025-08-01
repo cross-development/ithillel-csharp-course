@@ -1,0 +1,65 @@
+﻿@model List<Homework_13.Models.Note>
+
+@{
+    ViewData["Title"] = "Notes";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-4">Notes</h1>
+
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Create New Note
+    </a>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">@Html.DisplayFor(modelItem => item.Title)</h5>
+
+                    <small class="text-muted">@Html.DisplayFor(modelItem => item.CreatedAt)</small>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Text)</p>
+
+                    @if (!string.IsNullOrEmpty(item.Tags))
+                    {
+                        <div class="mb-2">
+                            @foreach (var tag in item.Tags.Split(','))
+                            {
+                                <span class="badge bg-secondary me-1">@tag.Trim()</span>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="card-footer">
+                    <div class="btn-group w-100" role="group">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Details</a>
+
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Edit</a>
+
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center mt-5">
+        <div class="alert alert-info">
+            <h4>No notes found</h4>
+
+            <p>Start by creating your first note!</p>
+
+            <a asp-action="Create" class="btn btn-primary">Create New Note</a>
+        </div>
+    </div>
+}

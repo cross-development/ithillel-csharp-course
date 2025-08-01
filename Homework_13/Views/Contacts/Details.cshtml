@@ -1,0 +1,49 @@
+﻿@model Homework_13.Models.Contact
+
+@{
+    ViewData["Title"] = "Contact Details";
+}
+
+<h1>Contact Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="mb-0">@Html.DisplayFor(model => model.Name)</h4>
+    </div>
+
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Phone)</dt>
+            <dd class="col-sm-9">
+                <a href="tel:@Model.Phone" class="text-decoration-none">@Html.DisplayFor(model => model.Phone)</a>
+            </dd>
+
+            @if (!string.IsNullOrEmpty(Model.AlternatePhone))
+            {
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.AlternatePhone)</dt>
+                <dd class="col-sm-9">
+                    <a href="tel:@Model.AlternatePhone" class="text-decoration-none">@Html.DisplayFor(model => model.AlternatePhone)</a>
+                </dd>
+            }
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Email)</dt>
+            <dd class="col-sm-9">
+                <a href="mailto:@Model.Email" class="text-decoration-none">@Html.DisplayFor(model => model.Email)</a>
+            </dd>
+
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Description)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+            }
+        </dl>
+    </div>
+
+    <div class="card-footer">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+
+        <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger">Delete</a>
+
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
